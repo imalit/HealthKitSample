@@ -164,6 +164,6 @@ class ViewModel: ObservableObject {
     
     func syncDisplay() {
         print("syncing display")
-        print(meditationData)
+        getMindfulnessData()
     }
 }
