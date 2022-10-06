@@ -19,8 +19,13 @@ enum ActivityType {
 protocol HealthModule: AnyObject {
     var healthStore: HKHealthStore? { get set }
     var isHKAvailable: Bool { get }
+    
+    // Returns true iff request permission is successful.
+    // Returns error if there's an error in requesting auth.
     func requestReadWritePermission(toShare: Set<HKSampleType>?,
                                     toRead: Set<HKSampleType>?) -> Future<Bool, Error>
+    
+    // Returns a publisher that contains either a list of all activity samples, or error
     func getData(activityType: ActivityType) -> AnyPublisher<[HKSample]?, Error>
 }
 
